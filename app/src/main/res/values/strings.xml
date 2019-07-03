@@ -1,3 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">InventoryApp</string>
+    <!-- Name for the application [CHAR LIMIT=12] -->
+    <string name="app_name">Book Store</string>
+
+    <!-- Label for overflow menu option that inserts fake book data into the app [CHAR LIMIT=20] -->
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+
+    <!-- Label for overflow menu option that deletes all book data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Books</string>
+
+    <!-- Title for the activity to add a new book [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_book">Add a Book</string>
+
+    <!-- Label for editor menu option to save book and leave editor activity [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+
+    <!-- Label for editor overflow menu option that deletes the current book [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
+
+
+    <!-- Label for book information like name, price and quantity in the editor [CHAR LIMIT=30] -->
+    <string name="category_book_information">Book</string>
+
+    <!-- Label for supplier name information in the editor [CHAR LIMIT=30] -->
+    <string name="category_supplier_name">Supplier Name</string>
+
+    <!-- Label for supplier phone information in the editor [CHAR LIMIT=30] -->
+    <string name="category_supplier_phone">Supplier Phone</string>
+
+
+    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_name">Name</string>
+
+    <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_price">Price</string>
+
+    <!-- Text hint for quantity field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_quantity">Quantity</string>
+
+    <!-- Text hint for supplier phone number in the editor [CHAR LIMIT=5] -->
+    <string name="hint_book_supplier_phone">Phone Number</string>
+
+
+    <!-- Label for dropdown menu option if the supplier name is Baker & Taylor [CHAR LIMIT=20] -->
+    <string name="supplier_name_baker_taylor">Baker &amp; Taylor</string>
+
+    <!-- Label for dropdown menu option if the supplier name is TAN Books [CHAR LIMIT=20] -->
+    <string name="supplier_name_tan_books">TAN Books</string>
+
+    <!-- Label for dropdown menu option if the supplier name is Casemate [CHAR LIMIT=20] -->
+    <string name="supplier_name_casemate">Casemate</string>
 </resources>
