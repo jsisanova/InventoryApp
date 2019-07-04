@@ -83,16 +83,56 @@ public class CatalogActivity extends AppCompatActivity {
                 null,                      // Don't filter by row groups
                 null);                    // The sort order
 
-        // Perform this raw SQL query "SELECT * FROM books"
-        // to get a Cursor that contains all rows from the books table.
-//        Log.e(LOG_TAG, "Test: SELECT * FROM " + BookEntry.TABLE_NAME);
-//        Cursor cursor = db.rawQuery("SELECT * FROM " + BookEntry.TABLE_NAME, null);
+        // Display the number of rows in the Cursor (which reflects the number of rows in the
+        // bookss table in the database).
+        TextView displayView = (TextView) findViewById(R.id.text_view_book);
 
         try {
-            // Display the number of rows in the Cursor (which reflects the number of rows in the
-            // books table in the database).
-            TextView displayView = (TextView) findViewById(R.id.text_view_book);
-            displayView.setText("Number of rows in books database table: " + cursor.getCount());
+            // Create a header in the Text View that looks like this:
+            //
+            // The books table contains <number of rows in Cursor> books.
+            // _id - name - author - price - quantity - supplier name - supplier phone
+            //
+            // In the while loop below, iterate through the rows of the cursor and display
+            // the information from each column in this order.
+            displayView.setText("The books table contains " + cursor.getCount() + " books.\n\n");
+            displayView.append(BookEntry._ID + " - " +
+                    BookEntry.COLUMN_BOOK_NAME + " - " +
+                    BookEntry.COLUMN_BOOK_AUTHOR + " - " +
+                    BookEntry.COLUMN_BOOK_PRICE + " - " +
+                    BookEntry.COLUMN_BOOK_QUANTITY + " - " +
+                    BookEntry.COLUMN_BOOK_SUPPLIER_NAME + " - " +
+                    BookEntry.COLUMN_BOOK_SUPPLIER_PHONE + "\n");
+
+            // Figure out the index of each column
+            int idColumnIndex = cursor.getColumnIndex(BookEntry._ID);
+            int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
+            int authorColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_AUTHOR);
+            int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
+            int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
+            int supplierNameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_NAME);
+            int supplierPhoneColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
+
+            // Iterate through all the returned rows in the cursor
+            while (cursor.moveToNext()) {
+                // Use that index to extract the String or Int value of the word
+                // at the current row the cursor is on.
+                int currentID = cursor.getInt(idColumnIndex);
+                String currentName = cursor.getString(nameColumnIndex);
+                String currentAuthor = cursor.getString(authorColumnIndex);
+                int currentPrice = cursor.getInt(priceColumnIndex);
+                int currentQuantity = cursor.getInt(quantityColumnIndex);
+                String  currentsupplierName = cursor.getString(supplierNameColumnIndex);
+                String currentsupplierPhone = cursor.getString(supplierPhoneColumnIndex);
+                // Display the values from each column of the current row in the cursor in the TextView
+                displayView.append(("\n" + currentID + " - " +
+                        currentName + " - " +
+                        currentAuthor + " - " +
+                        currentPrice + " - " +
+                        currentQuantity + " - " +
+                        currentsupplierName + " - " +
+                        currentsupplierPhone));
+            }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.
