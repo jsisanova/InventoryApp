@@ -44,7 +44,12 @@ public class CatalogActivity extends AppCompatActivity {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
         mDbHelper = new BookDbHelper(this);
+    }
 
+    // When activity starts again, after user clicks Save in editor activity, the list will refresh with new book in the database
+    @Override
+    protected void onStart() {
+        super.onStart();
         displayDatabaseInfo();
     }
 
@@ -88,7 +93,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(BookEntry.COLUMN_BOOK_PRICE, 19);
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, 1);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, BookEntry.SUPPLIER_NAME_BAKER_TAYLOR);
-        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, 1234567890);
+        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, "1234567890");
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
         // The first argument for db.insert() is the books table name.

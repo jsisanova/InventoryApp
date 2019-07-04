@@ -46,7 +46,7 @@
             <EditText
                 android:id="@+id/edit_book_price"
                 android:hint="@string/hint_book_price"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 style="@style/EditorFieldStyle" />
 
             <!-- quantity field -->
@@ -110,7 +110,7 @@
             <EditText
                 android:id="@+id/edit_supplier_phone"
                 android:hint="@string/hint_book_supplier_phone"
-                android:inputType="number"
+                android:inputType="text"
                 style="@style/EditorFieldStyle" />
         </RelativeLayout>
     </LinearLayout>
