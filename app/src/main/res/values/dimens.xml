@@ -4,4 +4,13 @@
 
     <!-- Common margin value used throughout the app -->
     <dimen name="activity_margin">16dp</dimen>
+
+    <!-- Padding left for EditText fields -->
+    <dimen name="edittext_padding_left">4dp</dimen>
+
+    <!-- Padding right for Spinner -->
+    <dimen name="spinner_padding_right">16dp</dimen>
+
+    <!-- Height of the spinner -->
+    <dimen name="spinner_height">48dp</dimen>
 </resources>

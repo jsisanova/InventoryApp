@@ -113,10 +113,10 @@ public class EditorActivity extends AppCompatActivity {
         String authorString = mAuthorEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
+        String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
         // Convert string into integer
         int price = Integer.parseInt(priceString);
         int quantity = Integer.parseInt(quantityString);
-        String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
 
         // Create database helper
         BookDbHelper mDbHelper = new BookDbHelper(this);
@@ -165,7 +165,7 @@ public class EditorActivity extends AppCompatActivity {
                 insertBook();
                 // Exit  editor activity and return automatically to catalog activity
                 finish();
-            // Respond to a click on the "Delete" menu option
+                // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
                 // Do nothing for now
                 return true;

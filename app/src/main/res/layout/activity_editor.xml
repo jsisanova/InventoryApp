@@ -25,14 +25,14 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="5"
-            android:paddingLeft="4dp"
+            android:paddingLeft="@dimen/edittext_padding_left"
             android:orientation="vertical">
 
             <!-- Name field -->
             <EditText
                 android:id="@+id/edit_book_name"
                 android:hint="@string/hint_book_name"
-                android:inputType="textCapWords"
+                android:inputType="textCapSentences"
                 style="@style/EditorFieldStyle" />
 
             <!-- Author field -->
@@ -80,9 +80,9 @@
             <!-- Supplier name drop-down spinner -->
             <Spinner
                 android:id="@+id/spinner_supplier_name"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/spinner_height"
                 android:layout_width="wrap_content"
-                android:paddingRight="16dp"
+                android:paddingRight="@dimen/spinner_padding_right"
                 android:spinnerMode="dropdown"/>
         </LinearLayout>
     </LinearLayout>
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="5"
-            android:paddingLeft="4dp">
+            android:paddingLeft="@dimen/edittext_padding_left">
 
             <!-- Phone number field -->
             <EditText

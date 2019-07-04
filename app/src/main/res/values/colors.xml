@@ -18,5 +18,6 @@
     <!-- Primary dark color for the editor -->
     <color name="editorColorPrimaryDark">#394450</color>
 
+    <!-- Background of FAB -->
     <color name="fabBackground">#FFFFFF</color>
 </resources>

@@ -73,7 +73,7 @@ public class CatalogActivity extends AppCompatActivity {
                 BookEntry.COLUMN_BOOK_SUPPLIER_PHONE
         };
 
-        // Perform a query on the pets table
+        // Perform a query on the books table
         Cursor cursor = db.query(
                 BookEntry.TABLE_NAME,             // The table to query
                 projection,                       // The columns to return
@@ -84,7 +84,7 @@ public class CatalogActivity extends AppCompatActivity {
                 null);                    // The sort order
 
         // Display the number of rows in the Cursor (which reflects the number of rows in the
-        // bookss table in the database).
+        // books table in the database).
         TextView displayView = (TextView) findViewById(R.id.text_view_book);
 
         try {
@@ -148,7 +148,7 @@ public class CatalogActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // Create a ContentValues object where column names are the keys,
-        // and Inferno Dan Brown book attributes are the values.
+        // and Stephen King book attributes are the values.
         ContentValues values = new ContentValues();
         values.put(BookEntry.COLUMN_BOOK_NAME, "Bag of Bones");
         values.put(BookEntry.COLUMN_BOOK_AUTHOR, "Stephen King");
@@ -157,7 +157,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, BookEntry.SUPPLIER_NAME_BAKER_TAYLOR);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, "1234567890");
 
-        // Insert a new row for Toto in the database, returning the ID of that new row.
+        // Insert a new row for Stephen King book in the database, returning the ID of that new row.
         // The first argument for db.insert() is the books table name.
         // The second argument provides the name of a column in which the framework
         // can insert NULL in the event that the ContentValues is empty (if

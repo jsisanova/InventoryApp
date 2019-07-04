@@ -35,13 +35,13 @@
     <!-- Text hint for author field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_author">Author</string>
 
-    <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
+    <!-- Text hint for price field in the editor [CHAR LIMIT=10] -->
     <string name="hint_book_price">Price</string>
 
-    <!-- Text hint for quantity field in the editor [CHAR LIMIT=30] -->
+    <!-- Text hint for quantity field in the editor [CHAR LIMIT=10] -->
     <string name="hint_book_quantity">Quantity</string>
 
-    <!-- Text hint for supplier phone number in the editor [CHAR LIMIT=5] -->
+    <!-- Text hint for supplier phone number in the editor [CHAR LIMIT=20] -->
     <string name="hint_book_supplier_phone">Phone Number</string>
 
 
