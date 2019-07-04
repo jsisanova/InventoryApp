@@ -12,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.android.inventoryapp.data.BookContract;
+import com.example.android.inventoryapp.data.BookContract.BookEntry;
+
 /**
  * Allows user to create a new pet or edit an existing one.
  */
@@ -33,10 +36,11 @@ public class EditorActivity extends AppCompatActivity {
     private EditText mSupplierPhoneEditText;
 
     /**
-     * Supplier name of the book. The possible valid values are:
-     * 0 for Baker & Taylor, 1 for TAN Books, 2 for Casemate.
+     * Supplier name of the book. The possible valid values are in the BookContract.java file:
+     * {@link BookEntry#SUPPLIER_NAME_BAKER_TAYLOR}, {@link BookEntry#SUPPLIER_NAME_TAN_BOOKS}, or
+     * {@link BookEntry#SUPPLIER_NAME_CASEMATE}.
      */
-    private int mSupplierName = 0;
+    private int mSupplierName = BookEntry.SUPPLIER_NAME_BAKER_TAYLOR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +79,11 @@ public class EditorActivity extends AppCompatActivity {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
                     if (selection.equals(getString(R.string.supplier_name_tan_books))) {
-                        mSupplierName = 1; // TAN Books
+                        mSupplierName = BookEntry.SUPPLIER_NAME_TAN_BOOKS; // TAN Books
                     } else if (selection.equals(getString(R.string.supplier_name_casemate))) {
-                        mSupplierName = 2; // Casemate
+                        mSupplierName = BookEntry.SUPPLIER_NAME_CASEMATE; // Casemate
                     } else {
-                        mSupplierName = 0; // Baker & Taylor
+                        mSupplierName = BookEntry.SUPPLIER_NAME_BAKER_TAYLOR; // Baker & Taylor
                     }
                 }
             }
@@ -87,7 +91,7 @@ public class EditorActivity extends AppCompatActivity {
             // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mSupplierName = 0; // Unknown
+                mSupplierName = BookEntry.SUPPLIER_NAME_BAKER_TAYLOR; // Baker & Taylor
             }
         });
     }
