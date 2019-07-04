@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.android.inventoryapp.data.BookContract;
 import com.example.android.inventoryapp.data.BookContract.BookEntry;
 
 /**
