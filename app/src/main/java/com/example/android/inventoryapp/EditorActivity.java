@@ -22,6 +22,9 @@ public class EditorActivity extends AppCompatActivity {
     /** EditText field to enter the book name */
     private EditText mNameEditText;
 
+    /** EditText field to enter the author name */
+    private EditText mAuthorEditText;
+
     /** EditText field to enter the book price */
     private EditText mPriceEditText;
 
@@ -48,6 +51,7 @@ public class EditorActivity extends AppCompatActivity {
 
         // Find all relevant views that we will need to read user input from
         mNameEditText = (EditText) findViewById(R.id.edit_book_name);
+        mAuthorEditText = (EditText) findViewById(R.id.edit_book_author);
         mPriceEditText = (EditText) findViewById(R.id.edit_book_price);
         mQuantityEditText = (EditText) findViewById(R.id.edit_book_quantity);
         mSupplierNameSpinner = (Spinner) findViewById(R.id.spinner_supplier_name);

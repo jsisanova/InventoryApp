@@ -32,6 +32,9 @@
     <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_name">Name</string>
 
+    <!-- Text hint for author field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_author">Author</string>
+
     <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_price">Price</string>
 

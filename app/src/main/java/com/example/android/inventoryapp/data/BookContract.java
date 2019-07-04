@@ -24,16 +24,20 @@ public final class BookContract {
         // Type: INTEGER
         public final static String _ID = BaseColumns._ID;
 
-        // Name of the pet.
+        // Name of the book.
         // Type: TEXT
         public final static String COLUMN_BOOK_NAME ="name";
+
+        // Author of the book.
+        // Type: TEXT
+        public final static String COLUMN_BOOK_AUTHOR ="author";
 
         //Price of the book.
         // Type: INTEGER
         public final static String COLUMN_BOOK_PRICE = "price";
 
         // Quantity of the book.
-         // Type: INTEGER
+        // Type: INTEGER
         public final static String COLUMN_BOOK_QUANTITY = "quantity";
 
         // Supplier name of the book.
