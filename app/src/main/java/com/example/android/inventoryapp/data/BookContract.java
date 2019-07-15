@@ -29,7 +29,7 @@ public final class BookContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     /**
-     * This constants store the path for each of the tables which will be appended to the base content URI.
+     * These constants store the path for each of the tables which will be appended to the base content URI.
      * Possible path (appended to base content URI for possible URI's)
      * For instance, content://com.example.android.books/books/ is a valid path for
      * looking at book data. content://com.example.android.books/staff/ will fail,
@@ -46,7 +46,7 @@ public final class BookContract {
         /** The content URI to access the book data in the provider
          * Inside each of the Entry classes in the contract, we create a full URI for the class
          * as a constant called CONTENT_URI. The Uri.withAppendedPath() method appends the BASE_CONTENT_URI
-         * (which contains the scheme and the content authority) to the path segment.
+         * (which contains the scheme and the content authority) to the PATH segment.
          */
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_BOOKS);
 
