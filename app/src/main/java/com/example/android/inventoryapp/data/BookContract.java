@@ -1,5 +1,6 @@
 package com.example.android.inventoryapp.data;
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
@@ -12,10 +13,42 @@ public final class BookContract {
     private BookContract() {}
 
     /**
+     * The "Content authority" is a name for the entire content provider, similar to the
+     * relationship between a domain name and its website.  A convenient string to use for the
+     * content authority is the package name for the app, which is guaranteed to be unique on the
+     * device.
+     * Used to help identify the Content Provider which we’d setup in the AndroidManifest tag.
+     */
+    public static final String CONTENT_AUTHORITY = "com.example.android.books";
+
+    /**
+     * Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact
+     * the content provider.
+     * To make this a usable URI, we use the parse method which takes in a URI string and returns a Uri.
+     */
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+
+    /**
+     * This constants store the path for each of the tables which will be appended to the base content URI.
+     * Possible path (appended to base content URI for possible URI's)
+     * For instance, content://com.example.android.books/books/ is a valid path for
+     * looking at book data. content://com.example.android.books/staff/ will fail,
+     * as the ContentProvider hasn't been given any information on what to do with "staff".
+     */
+    public static final String PATH_BOOKS = "books";
+
+    /**
      * Inner class that defines constant values for the books database table.
      * Each entry in the table represents a single book.
      */
     public static final class BookEntry implements BaseColumns {
+
+        /** The content URI to access the book data in the provider
+         * Inside each of the Entry classes in the contract, we create a full URI for the class
+         * as a constant called CONTENT_URI. The Uri.withAppendedPath() method appends the BASE_CONTENT_URI
+         * (which contains the scheme and the content authority) to the path segment.
+         */
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_BOOKS);
 
         // Name of database table for books
         public final static String TABLE_NAME = "books";

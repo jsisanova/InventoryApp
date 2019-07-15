@@ -34,7 +34,7 @@
              exported: whether Content Provider is visible to other apps -->
         <provider
             android:name=".data.BookProvider"
-            android:authorities="com.example.android.inventoryapp"
+            android:authorities="com.example.android.books"
             android:exported="false" />
     </application>
 </manifest>
