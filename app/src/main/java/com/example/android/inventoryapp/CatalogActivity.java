@@ -21,6 +21,7 @@ import com.example.android.inventoryapp.data.BookDbHelper;
  */
 public class CatalogActivity extends AppCompatActivity {
 
+    /** Tag for the log messages */
     private static final String LOG_TAG = CatalogActivity.class.getName();
 
     /** Database helper that will provide us access to the database */
