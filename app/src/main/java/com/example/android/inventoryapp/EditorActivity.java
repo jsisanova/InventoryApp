@@ -122,8 +122,8 @@ public class EditorActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(BookEntry.COLUMN_BOOK_NAME, nameString);
         values.put(BookEntry.COLUMN_BOOK_AUTHOR, authorString);
-        values.put(BookEntry.COLUMN_BOOK_PRICE, priceString);
-        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
+        values.put(BookEntry.COLUMN_BOOK_PRICE, price);
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantity);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, mSupplierName);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
 
