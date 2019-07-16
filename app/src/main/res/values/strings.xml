@@ -29,7 +29,6 @@
     <string name="empty_view_subtitle_text">Get started by adding a book</string>
 
 
-
     <!-- Toast message in editor when new book has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_book_successful">Book saved</string>
 
@@ -77,4 +76,22 @@
 
     <!-- Label for dropdown menu option if the supplier name is Casemate [CHAR LIMIT=20] -->
     <string name="supplier_name_casemate">Casemate</string>
+
+
+    <!-- Message when the user tries to add a new book and the name is missing [CHAR LIMIT=12] -->
+    <string name="name_missing">Product name is missing</string>
+
+    <!-- Message when the user tries to add a new book and the author is missing [CHAR LIMIT=12] -->
+    <string name="author_missing">Author name is missing</string>
+
+
+    <!-- Message when the user tries to add a new book and the quantity is missing [CHAR LIMIT=12] -->
+    <string name="quantity_missing">Product quantity is missing</string>
+
+    <!-- Message when the user tries to add a new book and the price is missing [CHAR LIMIT=12] -->
+    <string name="price_missing">Product price is missing</string>
+
+    <!-- Message when the user tries to add a new book and the supplier phone is missing [CHAR LIMIT=12] -->
+    <string name="supplier_phone_missing">Supplier phone number is missing</string>
+
 </resources>

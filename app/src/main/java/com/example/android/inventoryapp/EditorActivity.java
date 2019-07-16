@@ -136,6 +136,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
      * Get user input from editor and save book into database.
      */
     private void saveBook() {
+
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
@@ -143,24 +144,46 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
         String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
-        // Convert string into integer
-//        int price = Integer.parseInt(priceString);
-//        int quantity = Integer.parseInt(quantityString);
 
-        int price;
-        int quantity;
-        try {
-            price = Integer.parseInt(priceString);
-            // If we try to parse to an integer value when the priceString value is empty, which means "" (No user input)
-            // This throws an NumberFormatException because we are trying to convert an empty string to an integer.
-        } catch (NumberFormatException e) {
-            price = 0; // Set the price to 0, because this is the default value in the database
+        // Check if this is supposed to be a new book and check if all the fields in the editor are blank
+        if (mCurrentBookUri == null &&
+                TextUtils.isEmpty(nameString) &&
+                TextUtils.isEmpty(priceString) &&
+                TextUtils.isEmpty(quantityString) &&
+                TextUtils.isEmpty(supplierPhoneString) &&
+                mSupplierName == BookEntry.SUPPLIER_NAME_BAKER_TAYLOR) {
+            // Since no fields were modified, we can return early without creating a new book.
+            // No need to create ContentValues and no need to do any ContentProvider operations.
+
+            return;
         }
 
-        try {
-            quantity = Integer.parseInt(quantityString);
-        } catch (NumberFormatException e){
-            quantity = 0; // Set the quantity to 0, because this is the default value in the database
+        // Check if any of the fields in the editor are blank.
+        // If so, return and show a toast message about missing information.
+        if (mCurrentBookUri == null ||
+                TextUtils.isEmpty(nameString) ||
+                TextUtils.isEmpty(authorString) ||
+                TextUtils.isEmpty(priceString) ||
+                TextUtils.isEmpty(quantityString) ||
+                TextUtils.isEmpty(supplierPhoneString)) {
+            String mHasErrorsMessage = "";
+            if (TextUtils.isEmpty(nameString)) {
+                mHasErrorsMessage += getString(R.string.name_missing) + "\n";
+            }
+            if (TextUtils.isEmpty(authorString)) {
+                mHasErrorsMessage += getString(R.string.author_missing) + "\n";
+            }
+            if (TextUtils.isEmpty(priceString)) {
+                mHasErrorsMessage += getString(R.string.price_missing) + "\n";
+            }
+            if (TextUtils.isEmpty(quantityString)) {
+                mHasErrorsMessage += getString(R.string.quantity_missing) + "\n";
+            }
+            if (TextUtils.isEmpty(supplierPhoneString)) {
+                mHasErrorsMessage += getString(R.string.supplier_phone_missing) + "\n";
+            }
+            Toast.makeText(this, mHasErrorsMessage, Toast.LENGTH_LONG).show();
+            return;
         }
 
         // Create a ContentValues object where column names are the keys,
@@ -168,8 +191,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         ContentValues values = new ContentValues();
         values.put(BookEntry.COLUMN_BOOK_NAME, nameString);
         values.put(BookEntry.COLUMN_BOOK_AUTHOR, authorString);
-        values.put(BookEntry.COLUMN_BOOK_PRICE, price);
-        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantity);
+        values.put(BookEntry.COLUMN_BOOK_PRICE, priceString);
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, mSupplierName);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
 
@@ -178,7 +201,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             // This is a NEW book, so insert a new book into the provider,
             // returning the content URI for the new book.
             Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
-
             // Show a toast message depending on whether or not the insertion was successful.
             if (newUri == null) {
                 // If the new content URI is null, then there was an error with insertion.
@@ -189,14 +211,15 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 Toast.makeText(this, getString(R.string.editor_insert_book_successful),
                         Toast.LENGTH_SHORT).show();
             }
+
         } else {
             // Otherwise this is an EXISTING book, so update the book with content URI: mCurrentBookUri
             // and pass in the new ContentValues. Pass in null for the selection and selection args
             // because mCurrentBookUri will already identify the correct row in the database that
             // we want to modify.
             int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
-
             // Show a toast message depending on whether or not the update was successful.
+
             if (rowsAffected == 0) {
                 // If no rows were affected, then there was an error with the update.
                 Toast.makeText(this, getString(R.string.editor_update_book_failed),
