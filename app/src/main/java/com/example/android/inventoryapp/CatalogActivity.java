@@ -60,9 +60,6 @@ public class CatalogActivity extends AppCompatActivity {
      */
     private void displayDatabaseInfo() {
 
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
         // Define a projection that specifies which columns from the database you will actually use after this query.
         String[] projection = {
                 BookEntry._ID,
@@ -74,15 +71,14 @@ public class CatalogActivity extends AppCompatActivity {
                 BookEntry.COLUMN_BOOK_SUPPLIER_PHONE
         };
 
-        // Perform a query on the books table
-        Cursor cursor = db.query(
-                BookEntry.TABLE_NAME,             // The table to query
-                projection,                       // The columns to return
-                null,                    // The columns for the WHERE clause
-                null,                 // The values for the WHERE clause
-                null,                     // Don't group the rows
-                null,                      // Don't filter by row groups
-                null);                    // The sort order
+        // Perform a query on the provider using the ContentResolver.
+        // Use the {@link BookEntry#CONTENT_URI} to access the book data.
+        Cursor cursor = getContentResolver().query(
+                BookEntry.CONTENT_URI,           // The content URI of the books table
+                projection,                      // The columns to return for each row
+                null,                   // Selection criteria
+                null,                // Selection criteria
+                null);                 // The sort order for the returned rows
 
         // Display the number of rows in the Cursor (which reflects the number of rows in the
         // books table in the database).
