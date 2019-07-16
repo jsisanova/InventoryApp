@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.example.android.inventoryapp.data.BookContract;
 import com.example.android.inventoryapp.data.BookContract.BookEntry;
 
 /**

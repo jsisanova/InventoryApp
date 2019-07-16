@@ -24,6 +24,6 @@
     <!-- Text color in CatalogActivity for name -->
     <color name="textColorName">#2B3D4D</color>
 
-    <!-- Text color in CatalogActivity for name -->
+    <!-- Text color in CatalogActivity for price and quantity -->
     <color name="textColorPriceAndQuantity">#666666</color>
 </resources>

@@ -19,6 +19,14 @@
     <string name="action_delete">Delete</string>
 
 
+    <!-- Title text for the empty view, which describes the empty bookshelf image [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">No books yet...</string>
+
+    <!-- Subtitle text for the empty view that prompts the user to add a book [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">Get started by adding a book</string>
+
+
+
     <!-- Toast message in editor when new book has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_book_successful">Book saved</string>
 
