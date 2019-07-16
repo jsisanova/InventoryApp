@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.android.inventoryapp.data.BookContract.BookEntry;
 
@@ -81,7 +82,9 @@ public class BookProvider extends ContentProvider {
         // This cursor will hold the result of the query
         Cursor cursor;
 
-        // Figure out if the URI matcher can match the URI to a specific code
+        // Figure out if the URI matcher can match the URI to a specific code.
+        // Call UriMatcher.match(uri) and pass in an Uri, which will return corresponding integer code
+        // (if it matched valid pattern) or will tell you there's no match.
         int match = sUriMatcher.match(uri);
         switch (match) {
             case BOOKS:
@@ -133,7 +136,37 @@ public class BookProvider extends ContentProvider {
      */
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
-        return null;
+        // Check if the URI matcher can match the URI to a specific code.
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case BOOKS:
+                // Call insertBook() method
+                return insertBook(uri, contentValues);
+            default:
+                throw new IllegalArgumentException("Insertion is not supported for " + uri);
+        }
+    }
+
+    /**
+     * Insert a book into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertBook (Uri uri, ContentValues values) {
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert the new book with the given values
+        // Return value is the ID of the new row that was just created
+        long id = database.insert(BookEntry.TABLE_NAME, null, values);
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Once we know the ID of the newly inserted row in the table,
+        // return the new URI with the ID appended to the end of it
+        return ContentUris.withAppendedId(uri, id);
     }
 
     /**

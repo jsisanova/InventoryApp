@@ -19,6 +19,13 @@
     <string name="action_delete">Delete</string>
 
 
+    <!-- Toast message in editor when new book has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_book_successful">Book saved</string>
+
+    <!-- Toast message in editor when new book has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_book_failed">Error with saving book</string>
+
+
     <!-- Label for book information like name, price and quantity in the editor [CHAR LIMIT=30] -->
     <string name="category_book_information">Book</string>
 
