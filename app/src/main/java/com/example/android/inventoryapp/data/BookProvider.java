@@ -213,7 +213,96 @@ public class BookProvider extends ContentProvider {
      */
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
-        return 0;
+
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case BOOKS:
+                return updateBook(uri, contentValues, selection, selectionArgs);
+            case BOOK_ID:
+                // For the BOOK_ID code, extract out the ID from the URI,
+                // so we know which row to update. Selection will be "_id=?" and selection
+                // arguments will be a String array containing the actual ID.
+                selection = BookEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return updateBook(uri, contentValues, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Update is not supported for " + uri);
+        }
+    }
+
+    /**
+     * Update books in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more books).
+     * Return the number of rows that were successfully updated.
+     */
+    private int updateBook(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        // If the key is present, extract the value from it, and then check if it’s valid.
+        // If the {@link BookEntry#COLUMN_BOOK_NAME} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_NAME)) {
+            String name = values.getAsString(BookEntry.COLUMN_BOOK_NAME);
+            if (name == null) {
+                throw new IllegalArgumentException("Book requires a name");
+            }
+        }
+
+        // If the {@link BookEntry#COLUMN_BOOK_AUTHOR} key is present,
+        // check that the author value is not null.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_AUTHOR)) {
+            String author = values.getAsString(BookEntry.COLUMN_BOOK_AUTHOR);
+            if (author == null) {
+                throw new IllegalArgumentException("Book requires an author");
+            }
+        }
+
+        // If the {@link BookEntry#COLUMN_BOOK_SUPPLIER_PHONE} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE)) {
+            String phone = values.getAsString(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
+            if (phone == null) {
+                throw new IllegalArgumentException("Book requires a Supplier's phone number");
+            }
+        }
+
+        // If the {@link BookEntry#COLUMN_BOOK_PRICE} key is present,
+        // check that the price value is valid.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_PRICE)) {
+            Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
+            if (price != null && price < 0) {
+                throw new IllegalArgumentException("Product price is required");
+            }
+        }
+
+        // If the {@link BookEntry#COLUMN_BOOK_QUANTITY} key is present,
+        // check that the quantity value is valid.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_QUANTITY)) {
+            Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
+            if (quantity != null && quantity < 0) {
+                throw new IllegalArgumentException("Product quantity is required");
+            }
+        }
+
+        // If the {@link BookEntry#COLUMN_BOOK_SUPPLIER_NAME} key is present,
+        // check that the supplier value is valid.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_SUPPLIER_NAME)) {
+            Integer supplier = values.getAsInteger(BookEntry.COLUMN_BOOK_SUPPLIER_NAME);
+            if (supplier == null || !BookEntry.isValidSupplier(supplier)) {
+                throw new IllegalArgumentException("Book requires valid supplier name");
+            }
+        }
+
+        // If there are no values to update, then don't try to update the database.
+        // Check on the size of the ContentValues object- If there are no key/value pairs in it,
+        // then just return 0 rows affected.
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        // Otherwise, get writeable database to update the data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Returns the number of database rows affected by the update statement
+        return database.update(BookEntry.TABLE_NAME, values, selection, selectionArgs);
     }
 
     /**
