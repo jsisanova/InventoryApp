@@ -1,5 +1,6 @@
 package com.example.android.inventoryapp;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.inventoryapp.data.BookContract.BookEntry;
@@ -58,6 +60,29 @@ public class CatalogActivity extends AppCompatActivity  implements LoaderManager
         // Set the adapter to the view.
         mCursorAdapter = new BookCursorAdapter(this, null);
         bookListView.setAdapter(mCursorAdapter);
+
+        // Setup the item click listener
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                // Create new intent to go to {@link EditorActivity}
+                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+
+                // Form the content URI that represents the specific book that was clicked on,
+                // by appending the "id" (passed as input to this method) onto the
+                // {@link BookEntry#CONTENT_URI}.
+                // For example, the URI would be "content://com.example.android.books/books/2"
+                // if the book with ID 2 was clicked on.
+                Uri currentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
+
+                // Set the URI on the data field of the intent
+                intent.setData(currentBookUri);
+
+                // Launch the {@link EditorActivity} to display the data for the current book.
+                startActivity(intent);
+            }
+        });
+
 
         // Initialize the CursorLoader.
         getSupportLoaderManager().initLoader(0, null, this);

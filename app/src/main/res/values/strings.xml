@@ -10,7 +10,10 @@
     <string name="action_delete_all_entries">Delete All Books</string>
 
     <!-- Title for the activity to add a new book [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_new_book">Add a Book</string>
+    <string name="editor_activity_title_new_book">Add new Book</string>
+
+    <!-- Title for the activity to edit an existing book [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_edit_book">Edit Book</string>
 
     <!-- Label for editor menu option to save book and leave editor activity [CHAR LIMIT=20] -->
     <string name="action_save">Save</string>
