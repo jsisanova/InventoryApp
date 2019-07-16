@@ -133,9 +133,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     /**
-     * Get user input from editor and save new book into database.
+     * Get user input from editor and save book into database.
      */
-    private void insertBook() {
+    private void saveBook() {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
@@ -173,18 +173,39 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, mSupplierName);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
 
-        // Insert a new book into the provider, returning the content URI for the new book.
-        Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+        // Determine if this is a new or existing book by checking if mCurrentBooktUri is null or not
+        if (mCurrentBookUri == null) {
+            // This is a NEW book, so insert a new book into the provider,
+            // returning the content URI for the new book.
+            Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
 
-        // Show a toast message depending on whether or not the insertion was successful
-        if (newUri == null) {
-            // If the new content URI is null, then there was an error with insertion.
-            Toast.makeText(this, getString(R.string.editor_insert_book_failed),
-                    Toast.LENGTH_SHORT).show();
+            // Show a toast message depending on whether or not the insertion was successful.
+            if (newUri == null) {
+                // If the new content URI is null, then there was an error with insertion.
+                Toast.makeText(this, getString(R.string.editor_insert_book_failed),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                // Otherwise, the insertion was successful and we can display a toast.
+                Toast.makeText(this, getString(R.string.editor_insert_book_successful),
+                        Toast.LENGTH_SHORT).show();
+            }
         } else {
-            // Otherwise, the insertion was successful and we can display a toast.
-            Toast.makeText(this, getString(R.string.editor_insert_book_successful),
-                    Toast.LENGTH_SHORT).show();
+            // Otherwise this is an EXISTING book, so update the book with content URI: mCurrentBookUri
+            // and pass in the new ContentValues. Pass in null for the selection and selection args
+            // because mCurrentBookUri will already identify the correct row in the database that
+            // we want to modify.
+            int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
+
+            // Show a toast message depending on whether or not the update was successful.
+            if (rowsAffected == 0) {
+                // If no rows were affected, then there was an error with the update.
+                Toast.makeText(this, getString(R.string.editor_update_book_failed),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                // Otherwise, the update was successful and we can display a toast.
+                Toast.makeText(this, getString(R.string.editor_update_book_successful),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -203,7 +224,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 // Save book to database
-                insertBook();
+                saveBook();
                 // Exit  editor activity and return automatically to catalog activity
                 finish();
                 // Respond to a click on the "Delete" menu option
@@ -259,7 +280,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
             int supplierNameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_NAME);
             int supplierPhoneColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
-
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
