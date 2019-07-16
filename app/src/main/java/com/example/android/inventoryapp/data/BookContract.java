@@ -53,12 +53,14 @@ public final class BookContract {
 
         /**
          * The MIME type of the {@link #CONTENT_URI} for a list of books.
+         *  Directory MIME type: vnd.android.cursor.dir/com.example.android.books/books
          */
         public static final String CONTENT_LIST_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_BOOKS;
 
         /**
          * The MIME type of the {@link #CONTENT_URI} for a single book.
+         * Item MIME type: vnd.android.cursor.item/com.example.android.books/books
          */
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_BOOKS;

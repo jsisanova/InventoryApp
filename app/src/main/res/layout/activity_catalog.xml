@@ -8,11 +8,10 @@
     tools:context=".CatalogActivity">
 
     <!--List of books-->
-    <TextView
-        android:id="@+id/text_view_book"
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/activity_margin"/>
+        android:layout_height="match_parent" />
 
     <!--FloatingActionButton to add a new book-->
     <android.support.design.widget.FloatingActionButton
