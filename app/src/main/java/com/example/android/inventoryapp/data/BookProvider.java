@@ -174,14 +174,13 @@ public class BookProvider extends ContentProvider {
 
         // Check that the price is valid and greater than 0
         Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
-        if (price == null || price < 0) {
-//            if (weight != null && weight < 0) {
+        if (price != null && price < 0) {
             throw new IllegalArgumentException("Book price is required");
         }
 
         // Check that the quantity is valid and greater than 0
         Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
-        if (quantity == null || quantity < 0) {
+        if (quantity != null && quantity < 0) {
             throw new IllegalArgumentException("Book quantity is required");
         }
 

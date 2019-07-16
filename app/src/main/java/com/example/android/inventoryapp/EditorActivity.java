@@ -114,8 +114,24 @@ public class EditorActivity extends AppCompatActivity {
         String quantityString = mQuantityEditText.getText().toString().trim();
         String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
         // Convert string into integer
-        int price = Integer.parseInt(priceString);
-        int quantity = Integer.parseInt(quantityString);
+//        int price = Integer.parseInt(priceString);
+//        int quantity = Integer.parseInt(quantityString);
+
+        int price;
+        int quantity;
+        try {
+            price = Integer.parseInt(priceString);
+            // If we try to parse to an integer value when the priceString value is empty, which means "" (No user input)
+            // This throws an NumberFormatException because we are trying to convert an empty string to an integer.
+        } catch (NumberFormatException e) {
+            price = 0; // Set the price to 0, because this is the default value in the database
+        }
+
+         try {
+            quantity = Integer.parseInt(quantityString);
+        } catch (NumberFormatException e){
+            quantity = 0; // Set the quantity to 0, because this is the default value in the database
+        }
 
         // Create a ContentValues object where column names are the keys,
         // and book attributes from the editor are the values.
