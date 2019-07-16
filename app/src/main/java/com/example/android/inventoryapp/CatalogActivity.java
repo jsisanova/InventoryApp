@@ -85,7 +85,7 @@ public class CatalogActivity extends AppCompatActivity  implements LoaderManager
 
 
         // Initialize the CursorLoader.
-        getSupportLoaderManager().initLoader(0, null, this);
+        getSupportLoaderManager().initLoader(BOOK_LOADER, null, this);
     }
 
     /**
