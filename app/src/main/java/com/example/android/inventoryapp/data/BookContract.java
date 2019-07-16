@@ -87,5 +87,16 @@ public final class BookContract {
         public static final int SUPPLIER_NAME_BAKER_TAYLOR = 0;
         public static final int SUPPLIER_NAME_TAN_BOOKS = 1;
         public static final int SUPPLIER_NAME_CASEMATE = 2;
+
+        /**
+         * Returns whether or not the given supplier is {@link #SUPPLIER_NAME_BAKER_TAYLOR}, {@link #SUPPLIER_NAME_TAN_BOOKS},
+         * or {@link #SUPPLIER_NAME_CASEMATE}.
+         */
+        public static boolean isValidSupplier (int supplier) {
+            if (supplier == SUPPLIER_NAME_BAKER_TAYLOR || supplier == SUPPLIER_NAME_TAN_BOOKS || supplier == SUPPLIER_NAME_CASEMATE) {
+                return true;
+            }
+            return false;
+        }
     }
 }

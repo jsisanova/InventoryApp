@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.android.inventoryapp.data.BookContract.BookEntry;
@@ -152,6 +153,45 @@ public class BookProvider extends ContentProvider {
      * for that specific row in the database.
      */
     private Uri insertBook (Uri uri, ContentValues values) {
+
+        // Check that the name is not null or 0-length
+        String name = values.getAsString(BookEntry.COLUMN_BOOK_NAME);
+        if (TextUtils.isEmpty(name)) {
+            throw new IllegalArgumentException("Book requires a name");
+        }
+
+        // Check that the author is not null or 0-length
+        String author = values.getAsString(BookEntry.COLUMN_BOOK_AUTHOR);
+        if (TextUtils.isEmpty(author)) {
+            throw new IllegalArgumentException("Book requires an Author's name");
+        }
+
+        // Check that the phone number is not null or 0-length
+        String phone = values.getAsString(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
+        if (TextUtils.isEmpty(phone)) {
+            throw new IllegalArgumentException("Book requires a Supplier's phone number");
+        }
+
+        // Check that the price is valid and greater than 0
+        Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
+        if (price == null || price < 0) {
+//            if (weight != null && weight < 0) {
+            throw new IllegalArgumentException("Book price is required");
+        }
+
+        // Check that the quantity is valid and greater than 0
+        Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
+        if (quantity == null || quantity < 0) {
+            throw new IllegalArgumentException("Book quantity is required");
+        }
+
+        // Check that the supplier name is valid
+        // Cannot be NULL. Must equal one of these constants: SUPPLIER_NAME_BAKER_TAYLOR, SUPPLIER_NAME_TAN_BOOKS or SUPPLIER_NAME_CASEMATE.
+        Integer supplierName = values.getAsInteger(BookEntry.COLUMN_BOOK_SUPPLIER_NAME);
+        if (supplierName == null || !BookEntry.isValidSupplier(supplierName)) {
+            throw new IllegalArgumentException("Book supplier name is required");
+        }
+
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
