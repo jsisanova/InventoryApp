@@ -149,4 +149,7 @@
 
     <!-- Message when the user inputs a negative quantity [CHAR LIMIT=12] -->
     <string name="no_negative_quantity">Negative values are not allowed for quantity</string>
+
+    <!-- Name for the button to call and order from a supplier [CHAR LIMIT=12] -->
+    <string name="order_button">Order</string>
 </resources>

@@ -62,6 +62,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     /** Button to decrease the quantity of the product */
     private Button mDecreaseButton;
 
+    /** Button to call and order from a supplier */
+    private Button mOrderButton;
+
     /**
      * Supplier name of the book. The possible valid values are in the BookContract.java file:
      * {@link BookEntry#SUPPLIER_NAME_BAKER_TAYLOR}, {@link BookEntry#SUPPLIER_NAME_TAN_BOOKS}, or
@@ -123,6 +126,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         mIncreaseButton = (Button) findViewById(R.id.button_edit_increase_quantity);
         mDecreaseButton = (Button) findViewById(R.id.button_edit_decrease_quantity);
+        mOrderButton = (Button) findViewById(R.id.order_button);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -136,6 +140,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         mIncreaseButton.setOnTouchListener(mTouchListener);
         mDecreaseButton.setOnTouchListener(mTouchListener);
+        mOrderButton.setOnTouchListener(mTouchListener);
 
         // Increase the quantity in editor activity by one
         mIncreaseButton.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +174,30 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                     } else {
                         Toast.makeText(EditorActivity.this, getString(R.string.no_negative_quantity), Toast.LENGTH_SHORT).show();
                     }
+                }
+            }
+        });
+
+        // Call the supplier and order book
+        mOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = mSupplierPhoneEditText.getText().toString().trim();
+
+            }
+        });
+
+        mOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phoneNumber = mSupplierPhoneEditText.getText().toString().trim();
+                if (TextUtils.isEmpty(phoneNumber)) {
+                    Toast.makeText(EditorActivity.this, getString(R.string.supplier_phone_missing), Toast.LENGTH_SHORT).show();
+                } else {
+                    String orderUri = "tel:" + phoneNumber;
+                    Intent orderIntent = new Intent(Intent.ACTION_DIAL);
+                    orderIntent.setData(Uri.parse(orderUri));
+                    startActivity(orderIntent);
                 }
             }
         });
