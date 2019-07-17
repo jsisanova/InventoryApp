@@ -47,6 +47,12 @@
     <!-- Toast message in editor when current book has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_book_failed">Error with deleting book</string>
 
+    <!-- Toast message in editor when all the books were successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_all_books_successful">All the books deleted</string>
+
+    <!-- Toast message in editor when all the books have failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_all_books_failed">Error with deleting all the books</string>
+
 
     <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
@@ -60,10 +66,13 @@
     <!-- Dialog message to ask the user to confirm deleting the current book [CHAR LIMIT=NONE] -->
     <string name="delete_dialog_msg">Delete this book?</string>
 
-    <!-- Dialog button text for the option to confirm deleting the current book [CHAR LIMIT=20] -->
+    <!-- Dialog message to ask the user to confirm deleting all the books [CHAR LIMIT=NONE] -->
+    <string name="delete_all_dialog_msg">Delete all these books?</string>
+
+    <!-- Dialog button text for the option to confirm deleting the current book or all the books [CHAR LIMIT=20] -->
     <string name="delete">Delete</string>
 
-    <!-- Dialog button text for the option to cancel deletion of the current book [CHAR LIMIT=20] -->
+    <!-- Dialog button text for the option to cancel deletion of the current book or all the books [CHAR LIMIT=20] -->
     <string name="cancel">Cancel</string>
 
 
