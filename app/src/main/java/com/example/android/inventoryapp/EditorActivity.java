@@ -194,8 +194,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         // Check if any of the fields in the editor are blank.
         // If so, return and show a toast message about missing information.
-        if (mCurrentBookUri == null ||
-                TextUtils.isEmpty(nameString) ||
+        if (TextUtils.isEmpty(nameString) ||
                 TextUtils.isEmpty(authorString) ||
                 TextUtils.isEmpty(priceString) ||
                 TextUtils.isEmpty(quantityString) ||

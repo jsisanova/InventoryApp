@@ -132,7 +132,7 @@ public class CatalogActivity extends AppCompatActivity  implements LoaderManager
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                showDeleteAllConfirmationDialog();
+//                showDeleteAllConfirmationDialog();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -175,50 +175,50 @@ public class CatalogActivity extends AppCompatActivity  implements LoaderManager
         mCursorAdapter.swapCursor(null);
     }
 
-    /**
-     * Prompt the user to confirm that they want to delete all the books.
-     */
-    private void showDeleteAllConfirmationDialog() {
-        // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the positive and negative buttons on the dialog.
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.delete_all_dialog_msg);
-        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Delete" button, so delete al the books.
-                deleteAllBooks();
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Cancel" button, so dismiss the dialog
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
-            }
-        });
-
-        // Create and show the AlertDialog
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    /**
-     * Perform the deletion of all the books in the database.
-     */
-    private void deleteAllBooks() {
-        int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
-        Log.v(LOG_TAG, rowsDeleted + " rows deleted from books database");
-
-        // Show a toast message depending on whether or not the delete was successful.
-        if (rowsDeleted == 0) {
-            // If no rows were deleted, then there was an error with the delete.
-            Toast.makeText(this, getString(R.string.editor_delete_all_books_failed),
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            // Otherwise, the delete was successful and we can display a toast.
-            Toast.makeText(this, getString(R.string.editor_delete_all_books_successful),
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
+//    /**
+//     * Prompt the user to confirm that they want to delete all the books.
+//     */
+//    private void showDeleteAllConfirmationDialog() {
+//        // Create an AlertDialog.Builder and set the message, and click listeners
+//        // for the positive and negative buttons on the dialog.
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage(R.string.delete_all_dialog_msg);
+//        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                // User clicked the "Delete" button, so delete al the books.
+//                deleteAllBooks();
+//            }
+//        });
+//        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int id) {
+//                // User clicked the "Cancel" button, so dismiss the dialog
+//                if (dialog != null) {
+//                    dialog.dismiss();
+//                }
+//            }
+//        });
+//
+//        // Create and show the AlertDialog
+//        AlertDialog alertDialog = builder.create();
+//        alertDialog.show();
+//    }
+//
+////    /**
+////     * Perform the deletion of all the books in the database.
+////     */
+//    private void deleteAllBooks() {
+//        int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
+//        Log.v(LOG_TAG, rowsDeleted + " rows deleted from books database");
+//
+//        // Show a toast message depending on whether or not the delete was successful.
+//        if (rowsDeleted == 0) {
+//            // If no rows were deleted, then there was an error with the delete.
+//            Toast.makeText(this, getString(R.string.editor_delete_all_books_failed),
+//                    Toast.LENGTH_SHORT).show();
+//        } else {
+//            // Otherwise, the delete was successful and we can display a toast.
+//            Toast.makeText(this, getString(R.string.editor_delete_all_books_successful),
+//                    Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }
