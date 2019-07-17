@@ -140,4 +140,13 @@
 
     <!-- Message when the user forget to input a quantity [CHAR LIMIT=12] -->
     <string name="sale_quantity_missing">Check the books quantity</string>
+
+    <!-- Name for the plus button to increase the quantity in editor activity [CHAR LIMIT=12] -->
+    <string name="plus_button">+</string>
+
+    <!-- Name for the minus button to decrease the quantity in editor activity [CHAR LIMIT=12] -->
+    <string name="minus_button">-</string>
+
+    <!-- Message when the user inputs a negative quantity [CHAR LIMIT=12] -->
+    <string name="no_negative_quantity">Negative values are not allowed for quantity</string>
 </resources>

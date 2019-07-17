@@ -13,4 +13,7 @@
 
     <!-- Height of the spinner -->
     <dimen name="spinner_height">48dp</dimen>
+
+    <!-- Margin below and /or above buttons -->
+    <dimen name="margin_above_and_below_buttons">8dp</dimen>
 </resources>

@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -54,6 +55,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     /** EditText field to enter the book supplier phone */
     private EditText mSupplierPhoneEditText;
+
+    /** Button to increase the quantity of the product */
+    private Button mIncreaseButton;
+
+    /** Button to decrease the quantity of the product */
+    private Button mDecreaseButton;
 
     /**
      * Supplier name of the book. The possible valid values are in the BookContract.java file:
@@ -114,6 +121,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mSupplierNameSpinner = (Spinner) findViewById(R.id.spinner_supplier_name);
         mSupplierPhoneEditText = (EditText) findViewById(R.id.edit_supplier_phone);
 
+        mIncreaseButton = (Button) findViewById(R.id.button_edit_increase_quantity);
+        mDecreaseButton = (Button) findViewById(R.id.button_edit_decrease_quantity);
+
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
         // or not, if the user tries to leave the editor without saving.
@@ -123,6 +133,45 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mQuantityEditText.setOnTouchListener(mTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
         mSupplierNameSpinner.setOnTouchListener(mTouchListener);
+
+        mIncreaseButton.setOnTouchListener(mTouchListener);
+        mDecreaseButton.setOnTouchListener(mTouchListener);
+
+        // Increase the quantity in editor activity by one
+        mIncreaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String productQuantity = mQuantityEditText.getText().toString().trim();
+                int increaseQuantityByOne = 1;
+                if (TextUtils.isEmpty(productQuantity)) {
+                    mQuantityEditText.setText(Integer.toString(increaseQuantityByOne));
+                } else {
+                    int productQuantityInt = Integer.parseInt(productQuantity);
+                    int newQuantity = productQuantityInt + increaseQuantityByOne;
+                    mQuantityEditText.setText(Integer.toString(newQuantity));
+                }
+            }
+        });
+
+        // Decrease the quantity in editor activity by one
+        mDecreaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String productQuantity = mQuantityEditText.getText().toString().trim();
+                int decreaseQuantityByOne = 1;
+                if (TextUtils.isEmpty(productQuantity)) {
+                    mQuantityEditText.setText(Integer.toString(0));
+                } else {
+                    int productQuantityInt = Integer.parseInt(productQuantity);
+                    if (productQuantityInt > 0) {
+                        int newQuantity = productQuantityInt - decreaseQuantityByOne;
+                        mQuantityEditText.setText(Integer.toString(newQuantity));
+                    } else {
+                        Toast.makeText(EditorActivity.this, getString(R.string.no_negative_quantity), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
         setupSpinner();
     }
