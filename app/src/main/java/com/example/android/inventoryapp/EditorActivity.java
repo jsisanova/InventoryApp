@@ -298,7 +298,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 saveBook();
                 // Exit  editor activity and return automatically to catalog activity
                 finish();
-                // Respond to a click on the "Delete" menu option
+                break;
+            // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
                 // Pop up confirmation dialog for deletion
                 showDeleteConfirmationDialog();
