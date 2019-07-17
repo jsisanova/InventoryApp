@@ -103,7 +103,7 @@ public class CatalogActivity extends AppCompatActivity  implements LoaderManager
         values.put(BookEntry.COLUMN_BOOK_NAME, "Bag of Bones");
         values.put(BookEntry.COLUMN_BOOK_AUTHOR, "Stephen King");
         values.put(BookEntry.COLUMN_BOOK_PRICE, 19);
-        values.put(BookEntry.COLUMN_BOOK_QUANTITY, 1);
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, 3);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, BookEntry.SUPPLIER_NAME_BAKER_TAYLOR);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, "1234567890");
 

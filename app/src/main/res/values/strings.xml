@@ -128,4 +128,16 @@
     <!-- Message when the user tries to add a new book and the supplier phone is missing [CHAR LIMIT=12] -->
     <string name="supplier_phone_missing">Supplier phone number is missing</string>
 
+
+    <!-- Name for the sale button [CHAR LIMIT=12] -->
+    <string name="sale_button">Sale</string>
+
+    <!-- Message when the sale is successful [CHAR LIMIT=12] -->
+    <string name="sale_successful">Product sold</string>
+
+    <!-- Message when the sale failes [CHAR LIMIT=12] -->
+    <string name="sale_failed">Error with sale product</string>
+
+    <!-- Message when the user forget to input a quantity [CHAR LIMIT=12] -->
+    <string name="sale_quantity_missing">Check the books quantity</string>
 </resources>
