@@ -28,7 +28,7 @@ import android.widget.Toast;
 import com.example.android.inventoryapp.data.BookContract.BookEntry;
 
 /**
- * Allows user to create a new pet or edit an existing one.
+ * Allows user to create a new book or edit an existing one.
  */
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -181,14 +181,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // Call the supplier and order book
         mOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String phoneNumber = mSupplierPhoneEditText.getText().toString().trim();
-
-            }
-        });
-
-        mOrderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 String phoneNumber = mSupplierPhoneEditText.getText().toString().trim();
                 if (TextUtils.isEmpty(phoneNumber)) {
@@ -260,6 +252,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // Check if this is supposed to be a new book and check if all the fields in the editor are blank
         if (mCurrentBookUri == null &&
                 TextUtils.isEmpty(nameString) &&
+                TextUtils.isEmpty(authorString) &&
                 TextUtils.isEmpty(priceString) &&
                 TextUtils.isEmpty(quantityString) &&
                 TextUtils.isEmpty(supplierPhoneString) &&

@@ -26,4 +26,7 @@
 
     <!-- Text color in CatalogActivity for price and quantity -->
     <color name="textColorPriceAndQuantity">#666666</color>
+
+    <!-- Text color in CatalogActivity for subtitle text in empty view -->
+    <color name="subtitleColorEmptyView">#A2AAB0</color>
 </resources>

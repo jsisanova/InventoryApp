@@ -7,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/activity_margin">
+    android:padding="@dimen/common_margin">
 
     <TextView
         android:id="@+id/name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:textAllCaps="true"
         android:textColor="@color/textColorName"
@@ -45,5 +45,5 @@
         android:focusable="false"
         android:layout_marginTop="@dimen/margin_above_and_below_buttons"
         android:text="@string/sale_button" />
-        <!-- android:focusable="false" to be possible to click on list item and open it -->
+    <!-- android:focusable="false" to be possible to click on list item and open it -->
 </LinearLayout>

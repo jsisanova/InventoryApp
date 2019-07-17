@@ -23,7 +23,7 @@
 
 
     <!-- Title text for the empty view, which describes the empty bookshelf image [CHAR LIMIT=50] -->
-    <string name="empty_view_title_text">No books yet...</string>
+    <string name="empty_view_title_text">No books yet&#8230;</string>
 
     <!-- Subtitle text for the empty view that prompts the user to add a book [CHAR LIMIT=50] -->
     <string name="empty_view_subtitle_text">Get started by adding a book</string>

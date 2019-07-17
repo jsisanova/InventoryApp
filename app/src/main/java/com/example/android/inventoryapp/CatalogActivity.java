@@ -152,11 +152,11 @@ public class CatalogActivity extends AppCompatActivity  implements LoaderManager
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-            BookEntry.CONTENT_URI,              // Provider content URI to query
-            projection,                         // Columns to include in the resulting Cursor
-            null,                      // No selection clause
-            null,                   // No selection arguments
-            null);                     // Default sort order
+                BookEntry.CONTENT_URI,              // Provider content URI to query
+                projection,                         // Columns to include in the resulting Cursor
+                null,                      // No selection clause
+                null,                   // No selection arguments
+                null);                     // Default sort order
     }
 
     @Override
@@ -203,9 +203,9 @@ public class CatalogActivity extends AppCompatActivity  implements LoaderManager
         alertDialog.show();
     }
 
-//    /**
-//     * Perform the deletion of all the books in the database.
-//     */
+    /**
+     * Perform the deletion of all the books in the database.
+     */
     private void deleteAllBooks() {
         int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
         Log.v(LOG_TAG, rowsDeleted + " rows deleted from books database");
